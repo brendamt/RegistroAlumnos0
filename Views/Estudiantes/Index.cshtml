@@ -1,0 +1,37 @@
+﻿@model IEnumerable<EstudianteModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class=" text-center">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ID)</th>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaNacimiento)</th>
+                <th>@Html.DisplayNameFor(model => model.Curso)</th>
+                <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                <th><a class="btn btn-outline-success" asp-action="Agregar"><i class="fa fa-plus-square"></i> Estudiante</a></th>
+            </tr>
+        </thead>
+        @foreach (var Lista in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(model => Lista.ID)</td>
+                    <td>@Html.DisplayFor(model => Lista.Nombre)</td>
+                    <td>@Html.DisplayFor(model => Lista.FechaNacimiento)</td>
+                    <td>@Html.DisplayFor(model => Lista.Curso)</td>
+                    <td>@Html.DisplayFor(model => Lista.DescripEstado)</td>
+                    <td>
+                        <a asp-action="Agregar" asp-route-id="@Lista.ID"><i class="fa fa-pencil fa-lg"></i></a>
+                        <a asp-action="Eliminar" asp-route-id="@Lista.ID" class="text-danger ml-1"
+                           onclick="return confirm('¿Está seguro que desea eliminar este registro?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>
